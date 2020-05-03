@@ -65,5 +65,8 @@
     "eslint-plugin-mocha": "^6.2.2",
     "source-map-support": "^0.5.16",
     "typescript": "~3.7.5"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
