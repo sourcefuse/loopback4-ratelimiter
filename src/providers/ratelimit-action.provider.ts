@@ -57,7 +57,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       );
 
       const limiter = RateLimit.default(opts);
-      limiter(request, response, err => {
+      limiter(request, response, (err) => {
         if (err) {
           reject(err);
         }
