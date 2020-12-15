@@ -28,10 +28,11 @@
     "prepublishOnly": "npm run test && npm run lint"
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/sourcefuse/loopback4-ratelimiter"
   },
   "author": "",
-  "license": "",
+  "license": "MIT",
   "files": [
     "README.md",
     "index.js",
