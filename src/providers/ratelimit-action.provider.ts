@@ -39,7 +39,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
     }
 
     // Perform rate limiting now
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise<void>((resolve, reject) => {
       // First check if rate limit options available at method level
       const operationMetadata = metadata ? metadata.options : {};
 
@@ -57,7 +57,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       );
 
       const limiter = RateLimit.default(opts);
-      limiter(request, response, (err) => {
+      limiter(request, response, (err: unknown) => {
         if (err) {
           reject(err);
         }
