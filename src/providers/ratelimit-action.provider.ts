@@ -49,6 +49,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       if (redisDS?.connector) {
         opts.store = new RedisStore.default({
           client: redisDS.connector._client,
+          expiry: (opts.windowMs ?? 60 * 1000) / 1000,
         });
       }
 
