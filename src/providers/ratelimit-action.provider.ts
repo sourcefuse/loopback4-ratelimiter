@@ -47,10 +47,10 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       const opts = Object.assign({}, this.config, operationMetadata);
 
 
+
       if (this.datastore) {
       opts.store = this.datastore;
       }
-
 
 
 
