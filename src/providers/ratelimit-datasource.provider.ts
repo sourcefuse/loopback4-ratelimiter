@@ -17,7 +17,6 @@ export class RatelimitDatasourceProvider implements Provider<Store | undefined>
 
   value(): Store | undefined
   {
-    console.log(MongoStore);
 
     if(this.config?.type ==  'MemcachedStore')
     return new MemcachedStore({client: this.config?.client, expiration: (this.config?.windowMs ?? 60 * 1000) / 1000} );
