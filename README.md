@@ -20,7 +20,7 @@ In order to use this component into your LoopBack application, please follow bel
 this.component(RateLimiterComponent);
 ```
 
-- Minimum configuration required for this component to work is the datasource name. Please provide it as below.
+- Minimum configuration required for this component is given below.
 
 For redis datasource
 
