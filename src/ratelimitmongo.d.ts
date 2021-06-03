@@ -3,21 +3,26 @@ declare module 'rate-limit-mongo'
 {
   declare namespace MongoStore {
     interface Options {
-        name?:string,
-        expiry?: number;
-        prefix?: string;
-        resetExpiryOnChange?: boolean;
-        client?:  any;
-        redisURL?: string;
+        uri?:string,
+        collectionName?: string,
+        user?: string,
+        password?: string,
+        authSource?: string,
+        collection?: object,
+        connectionOptions?: object,
+        expireTimeMs?: integer,
+        resetExpireDateOnChange?: boolean,
+        errorHandler?: function,
+        createTtlIndex?: boolean
     }
 }
 
 declare class MongoStore implements Store {
-    constructor(options?: RedisStore.Options);
+    constructor(options?: MongoStore.Options);
+    getClient(callback:any):void;
     incr(key: string, cb: StoreIncrementCallback): void;
     decrement(key: string): void;
     resetKey(key: string): void;
-
     resetAll(): void;
 }
 

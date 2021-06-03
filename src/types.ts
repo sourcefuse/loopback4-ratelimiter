@@ -1,13 +1,11 @@
 import {Request, Response} from '@loopback/rest';
 import {Options} from 'express-rate-limit';
-export const enum DatastoreType { RedisStore = 'RedisStore',
-MemcachedStore = 'MemcachedStore',
-MongoStore = 'MongoStore'
-};
 export interface DataSourceConfig {
   name: string;
   client?: any;
   type?: string;
+  uri?:string,
+  collectionName?:string
 }
 
 export interface RateLimitAction {

@@ -2,7 +2,7 @@
 
 [![LoopBack](<https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
 
-A simple loopback-next extension for rate limiting in loopback applications. This extension uses [express-rate-limit](https://github.com/nfriedly/express-rate-limit) under the hood with redis used as store for rate limiting key storage using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis)
+A simple loopback-next extension for rate limiting in loopback applications. This extension uses [express-rate-limit](https://github.com/nfriedly/express-rate-limit) under the hood with redis, memcache and mongodDB used as store for rate limiting key storage using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis), [rate-limit-memcached](https://github.com/linyows/rate-limit-memcached) and [rate-limit-mongo](https://github.com/2do2go/rate-limit-mongo)
 
 ## Install
 
@@ -20,15 +20,38 @@ In order to use this component into your LoopBack application, please follow bel
 this.component(RateLimiterComponent);
 ```
 
-- Minimum configuration required for this component to work is the redis datasource name. Please provide it as below.
+- Minimum configuration required for this component to work is the datasource name. Please provide it as below.
+
+For redis datasource
 
 ```ts
 this.bind(RateLimitSecurityBindings.CONFIG).to({
   name: 'redis',
+  type:'RedisStore';
 });
 ```
 
-- By default, ratelimiter will be initialized with default options as mentioned [here](https://github.com/nfriedly/express-rate-limit#configuration-options). However, you can override any of the options using the Config Binding like below.
+For memcache datasource
+
+```ts
+this.bind(RateLimitSecurityBindings.CONFIG).to({
+  name: 'memcache',
+  type:'MemcachedStore';
+});
+```
+
+For mongoDB datasource
+
+```ts
+this.bind(RateLimitSecurityBindings.CONFIG).to({
+  name: 'mongo',
+  type:'MongoStore';
+  uri: 'mongodb://127.0.0.1:27017/test_db',
+  collectionName: 'expressRateRecords'
+});
+```
+
+- By default, ratelimiter will be initialized with default options as mentioned [here](https://github.com/nfriedly/express-rate-limit#configuration-options). However, you can override any of the options using the Config Binding. Below is an example of how to do it with the redis datasource, you can also do it with other two datasources similarly.
 
 ```ts
 const rateLimitKeyGen = (req: Request) => {
@@ -42,8 +65,10 @@ const rateLimitKeyGen = (req: Request) => {
 
 ......
 
+
 this.bind(RateLimitSecurityBindings.CONFIG).to({
   name: 'redis',
+  type: 'RedisStore',
   max: 60,
   keyGenerator: rateLimitKeyGen,
 });
