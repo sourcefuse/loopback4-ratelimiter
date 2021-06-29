@@ -4,12 +4,11 @@ import {Request, Response, RestApplication, HttpErrors} from '@loopback/rest';
 import * as RateLimit from 'express-rate-limit';
 import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitAction, RateLimitMetadata, RateLimitOptions} from '../types';
-import {RatelimitDatasourceProvider} from './ratelimit-datasource.provider';
 
 export class RatelimitActionProvider implements Provider<RateLimitAction> {
   constructor(
-    @inject(RateLimitSecurityBindings.DATASOURCEPROVIDER.key)
-    private datastore: RatelimitDatasourceProvider,
+    @inject(RateLimitSecurityBindings.DATASOURCEPROVIDER)
+    private datastore: RateLimit.Store,
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
     @inject(CoreBindings.APPLICATION_INSTANCE)
@@ -39,11 +38,8 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       // Create options based on global config and method level config
       const opts = Object.assign({}, this.config, operationMetadata);
 
-
-
-
       if (this.datastore) {
-      opts.store = this.datastore;
+        opts.store = this.datastore;
       }
 
       opts.message = new HttpErrors.TooManyRequests(

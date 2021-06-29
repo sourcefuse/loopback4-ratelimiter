@@ -5,11 +5,7 @@ import {Store} from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
 import MemcachedStore from 'rate-limit-memcached';
 import MongoStore from 'rate-limit-mongo';
-type StoreIncrementCallback = (
-  err?: {},
-  hits?: number,
-  resetTime?: Date,
-) => void;
+
 export class RatelimitDatasourceProvider
   implements Provider<Store | undefined> {
   constructor(
@@ -37,8 +33,4 @@ export class RatelimitDatasourceProvider
         expireTimeMs: (this.config?.windowMs ?? 60 * 1000) / 1000,
       });
   }
-  incr(key: string, cb: StoreIncrementCallback) {}
-  decrement(key: string) {}
-  resetKey(key: string) {}
-  resetAll() {}
 }
