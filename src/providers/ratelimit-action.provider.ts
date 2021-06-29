@@ -39,8 +39,11 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       // Create options based on global config and method level config
       const opts = Object.assign({}, this.config, operationMetadata);
 
+
+
+
       if (this.datastore) {
-        opts.store = this.datastore;
+      opts.store = this.datastore;
       }
 
       opts.message = new HttpErrors.TooManyRequests(
