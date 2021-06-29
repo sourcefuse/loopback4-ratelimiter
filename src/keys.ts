@@ -18,9 +18,6 @@ export namespace RateLimitSecurityBindings {
   export const DATASOURCEPROVIDER = BindingKey.create<Store | null>(
     'sf.security.ratelimit.datasourceProvider',
   );
-
-
-
 }
 
 export const RATELIMIT_METADATA_ACCESSOR = MetadataAccessor.create<

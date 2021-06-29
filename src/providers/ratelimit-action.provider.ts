@@ -6,15 +6,10 @@ import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitAction, RateLimitMetadata, RateLimitOptions} from '../types';
 import {RatelimitDatasourceProvider} from './ratelimit-datasource.provider';
 
-
-
-
-
 export class RatelimitActionProvider implements Provider<RateLimitAction> {
   constructor(
-
     @inject(RateLimitSecurityBindings.DATASOURCEPROVIDER.key)
-    private datastore : RatelimitDatasourceProvider,
+    private datastore: RatelimitDatasourceProvider,
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
     @inject(CoreBindings.APPLICATION_INSTANCE)
@@ -23,7 +18,6 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       optional: true,
     })
     private readonly config?: RateLimitOptions,
-
   ) {}
 
   value(): RateLimitAction {
@@ -37,7 +31,6 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       return Promise.resolve();
     }
 
-
     // Perform rate limiting now
     const promise = new Promise<void>((resolve, reject) => {
       // First check if rate limit options available at method level
@@ -46,13 +39,9 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       // Create options based on global config and method level config
       const opts = Object.assign({}, this.config, operationMetadata);
 
-
-
       if (this.datastore) {
-      opts.store = this.datastore;
+        opts.store = this.datastore;
       }
-
-
 
       opts.message = new HttpErrors.TooManyRequests(
         opts.message?.toString() ?? 'Method rate limit reached !',
