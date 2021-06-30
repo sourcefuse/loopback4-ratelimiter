@@ -1,5 +1,5 @@
 import {BindingKey, MetadataAccessor} from '@loopback/core';
-
+import {Store} from 'express-rate-limit';
 import {RateLimitAction, RateLimitOptions, RateLimitMetadata} from './types';
 
 export namespace RateLimitSecurityBindings {
@@ -13,6 +13,10 @@ export namespace RateLimitSecurityBindings {
 
   export const CONFIG = BindingKey.create<RateLimitOptions | null>(
     'sf.security.ratelimit.config',
+  );
+
+  export const DATASOURCEPROVIDER = BindingKey.create<Store | null>(
+    'sf.security.ratelimit.datasourceProvider',
   );
 }
 

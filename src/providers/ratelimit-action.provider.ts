@@ -1,14 +1,14 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
-import {Getter, juggler} from '@loopback/repository';
+import {Getter} from '@loopback/repository';
 import {Request, Response, RestApplication, HttpErrors} from '@loopback/rest';
 import * as RateLimit from 'express-rate-limit';
-import * as RedisStore from 'rate-limit-redis';
-
 import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitAction, RateLimitMetadata, RateLimitOptions} from '../types';
 
 export class RatelimitActionProvider implements Provider<RateLimitAction> {
   constructor(
+    @inject(RateLimitSecurityBindings.DATASOURCEPROVIDER)
+    private datastore: RateLimit.Store,
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
     @inject(CoreBindings.APPLICATION_INSTANCE)
@@ -30,14 +30,6 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       return Promise.resolve();
     }
 
-    // For redis datasource
-    let redisDS: juggler.DataSource;
-    if (this.config) {
-      redisDS = (await this.application.get(
-        `datasources.${this.config.name}`,
-      )) as juggler.DataSource;
-    }
-
     // Perform rate limiting now
     const promise = new Promise<void>((resolve, reject) => {
       // First check if rate limit options available at method level
@@ -46,11 +38,8 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       // Create options based on global config and method level config
       const opts = Object.assign({}, this.config, operationMetadata);
 
-      if (redisDS?.connector) {
-        opts.store = new RedisStore.default({
-          client: redisDS.connector._client,
-          expiry: (opts.windowMs ?? 60 * 1000) / 1000,
-        });
+      if (this.datastore) {
+        opts.store = this.datastore;
       }
 
       opts.message = new HttpErrors.TooManyRequests(
