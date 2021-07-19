@@ -1,8 +1,13 @@
 import {Request, Response} from '@loopback/rest';
 import {Options} from 'express-rate-limit';
+import {RedisClient} from 'redis';
+import IORedis = require('ioredis');
+
+export type RedisClientType = IORedis.Redis | RedisClient;
+
 export interface DataSourceConfig {
   name: string;
-  client?: string;
+  client?: string | RedisClientType | undefined;
   type?: string;
   uri?: string;
   collectionName?: string;
