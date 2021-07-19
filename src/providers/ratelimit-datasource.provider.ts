@@ -1,19 +1,23 @@
-import {inject, Provider} from '@loopback/core';
-import {RateLimitOptions, RedisClientType} from '../types';
+import {CoreBindings, inject, Provider} from '@loopback/core';
+import {RateLimitOptions} from '../types';
 import {RateLimitSecurityBindings} from '../keys';
 import {Store} from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
 import MemcachedStore from 'rate-limit-memcached';
 import MongoStore from 'rate-limit-mongo';
+import {juggler} from '@loopback/repository';
+import {HttpErrors, RestApplication} from '@loopback/rest';
 
 export class RatelimitDatasourceProvider
   implements Provider<Store | undefined> {
   constructor(
+    @inject(CoreBindings.APPLICATION_INSTANCE)
+    private readonly application: RestApplication,
     @inject(RateLimitSecurityBindings.CONFIG, {optional: true})
     private readonly config?: RateLimitOptions,
   ) {}
 
-  value(): Store | undefined {
+  async value(): Promise<Store | undefined> {
     if (this.config?.type === 'MemcachedStore') {
       return new MemcachedStore({
         client: this.config?.client,
@@ -26,10 +30,17 @@ export class RatelimitDatasourceProvider
         expireTimeMs: (this.config?.windowMs ?? 60 * 1000) / 1000,
       });
     } else {
-      return new RedisStore({
-        client: this.config?.client as RedisClientType | undefined,
-        expiry: (this.config?.windowMs ?? 60 * 1000) / 1000,
-      });
+      const redisDS = (await this.application.get(
+        `datasources.${this.config?.name}`,
+      )) as juggler.DataSource;
+      if (redisDS?.connector) {
+        return new RedisStore({
+          client: redisDS.connector._client,
+          expiry: (this.config?.windowMs ?? 60 * 1000) / 1000,
+        });
+      } else {
+        throw new HttpErrors.InternalServerError('Invalid Datasource');
+      }
     }
   }
 }

@@ -22,21 +22,22 @@ this.component(RateLimiterComponent);
 
 - Minimum configuration required for this component is given below.
 
-For redis datasource
+For redis datasource, you have to pass the name of a loopback4 datasource
 
 ```ts
 this.bind(RateLimitSecurityBindings.CONFIG).to({
   name: 'redis',
-  type:'RedisStore';
+  type:'RedisStore'
 });
 ```
+
 
 For memcache datasource
 
 ```ts
 this.bind(RateLimitSecurityBindings.CONFIG).to({
-  name: 'memcache',
-  type:'MemcachedStore';
+  client: memoryClient,
+  type:'MemcachedStore'
 });
 ```
 
