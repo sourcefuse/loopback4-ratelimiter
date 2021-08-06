@@ -9,7 +9,8 @@ import {RateLimitMetadata} from '../types';
 import {RATELIMIT_METADATA_ACCESSOR} from '../keys';
 
 export class RateLimitMetadataProvider
-  implements Provider<RateLimitMetadata | undefined> {
+  implements Provider<RateLimitMetadata | undefined>
+{
   constructor(
     @inject(CoreBindings.CONTROLLER_CLASS, {optional: true})
     private readonly controllerClass: Constructor<{}>,

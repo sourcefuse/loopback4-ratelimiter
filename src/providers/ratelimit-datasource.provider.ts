@@ -1,7 +1,7 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {RateLimitOptions} from '../types';
 import {RateLimitSecurityBindings} from '../keys';
-import {Store} from 'express-rate-limit';
+import {Store} from 'express-rate-limit-updated';
 import RedisStore from 'rate-limit-redis';
 import MemcachedStore from 'rate-limit-memcached';
 import MongoStore from 'rate-limit-mongo';
@@ -9,7 +9,8 @@ import {juggler} from '@loopback/repository';
 import {HttpErrors, RestApplication} from '@loopback/rest';
 
 export class RatelimitDatasourceProvider
-  implements Provider<Store | undefined> {
+  implements Provider<Store | undefined>
+{
   constructor(
     @inject(CoreBindings.APPLICATION_INSTANCE)
     private readonly application: RestApplication,
