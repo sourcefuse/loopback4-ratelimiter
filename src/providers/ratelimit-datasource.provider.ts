@@ -9,7 +9,7 @@ import {juggler} from '@loopback/repository';
 import {HttpErrors, RestApplication} from '@loopback/rest';
 
 export class RatelimitDatasourceProvider
-  implements Provider<Store | undefined> {
+  implements Provider<Store | MemcachedStore | undefined> {
   constructor(
     @inject(CoreBindings.APPLICATION_INSTANCE)
     private readonly application: RestApplication,
@@ -17,7 +17,7 @@ export class RatelimitDatasourceProvider
     private readonly config?: RateLimitOptions,
   ) {}
 
-  async value(): Promise<Store | undefined> {
+  async value(): Promise<Store | MemcachedStore | undefined> {
     if (this.config?.type === 'MemcachedStore') {
       return new MemcachedStore({
         client: this.config?.client,
