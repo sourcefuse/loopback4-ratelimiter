@@ -9,10 +9,10 @@ import {
 export class RateLimiterComponent implements Component {
   constructor() {
     this.providers = {
-      [RateLimitSecurityBindings.RATELIMIT_SECURITY_ACTION
-        .key]: RatelimitActionProvider,
-      [RateLimitSecurityBindings.DATASOURCEPROVIDER
-        .key]: RatelimitDatasourceProvider,
+      [RateLimitSecurityBindings.RATELIMIT_SECURITY_ACTION.key]:
+        RatelimitActionProvider,
+      [RateLimitSecurityBindings.DATASOURCEPROVIDER.key]:
+        RatelimitDatasourceProvider,
       [RateLimitSecurityBindings.METADATA.key]: RateLimitMetadataProvider,
     };
     this.bindings.push(
