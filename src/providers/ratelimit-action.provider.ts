@@ -7,8 +7,8 @@ import {RateLimitAction, RateLimitMetadata, RateLimitOptions} from '../types';
 
 export class RatelimitActionProvider implements Provider<RateLimitAction> {
   constructor(
-    @inject(RateLimitSecurityBindings.DATASOURCEPROVIDER)
-    private datastore: RateLimit.Store,
+    @inject.getter(RateLimitSecurityBindings.DATASOURCEPROVIDER)
+    private readonly getDatastore: Getter<RateLimit.Store>,
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
     @inject(CoreBindings.APPLICATION_INSTANCE)
@@ -25,7 +25,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
 
   async action(request: Request, response: Response): Promise<void> {
     const metadata: RateLimitMetadata = await this.getMetadata();
-
+    const dataStore = await this.getDatastore();
     if (metadata && !metadata.enabled) {
       return Promise.resolve();
     }
@@ -38,8 +38,8 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       // Create options based on global config and method level config
       const opts = Object.assign({}, this.config, operationMetadata);
 
-      if (this.datastore) {
-        opts.store = this.datastore;
+      if (dataStore) {
+        opts.store = dataStore;
       }
 
       opts.message = new HttpErrors.TooManyRequests(
