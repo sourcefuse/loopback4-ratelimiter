@@ -1,17 +1,14 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {Getter} from '@loopback/repository';
-import {RateLimitMetadata, RateLimitOptions} from '../types';
+import {RateLimitMetadata, RateLimitOptions, Store} from '../types';
 import {RateLimitSecurityBindings} from '../keys';
-import {Store} from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
 import MemcachedStore from 'rate-limit-memcached';
 import MongoStore from 'rate-limit-mongo';
 import {juggler} from '@loopback/repository';
 import {HttpErrors, RestApplication} from '@loopback/rest';
 
-export class RatelimitDatasourceProvider
-  implements Provider<Store | MemcachedStore | undefined>
-{
+export class RatelimitDatasourceProvider implements Provider<Store> {
   constructor(
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
@@ -21,11 +18,11 @@ export class RatelimitDatasourceProvider
     private readonly config?: RateLimitOptions,
   ) {}
 
-  value(): Promise<Store | MemcachedStore | undefined> {
+  value(): Promise<Store> {
     return this.action();
   }
 
-  async action(): Promise<Store | MemcachedStore | undefined> {
+  async action(): Promise<Store> {
     const metadata: RateLimitMetadata = await this.getMetadata();
 
     // First check if rate limit options available at method level
