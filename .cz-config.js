@@ -26,6 +26,8 @@ module.exports = {
 
   scopes: [
     {name: 'ci-cd'},
+    {name: 'deps'},
+    {name: 'chore'},
     {name: 'tests'},
     {name: 'datasources'},
     {name: 'decorators'},
