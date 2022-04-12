@@ -5,9 +5,11 @@ export class TestController {
   constructor() {}
   @get('/test', {
     responses: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '200': {
         description: 'Test End Point Called',
         content: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           'application/json': {
             schema: {
               type: 'object',
@@ -34,9 +36,11 @@ export class TestController {
   })
   @get('/testDecorator', {
     responses: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '200': {
         description: 'Test Decorator End Point Called',
         content: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           'application/json': {
             schema: {
               type: 'object',
