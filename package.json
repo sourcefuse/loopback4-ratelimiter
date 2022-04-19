@@ -94,7 +94,8 @@
   },
   "peerDependencies": {
     "loopback-connector-kv-redis": "^4.0.0",
-    "memcached": "^2.2.2"
+    "memcached": "^2.2.2",
+    "patch-package": "^6.4.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
