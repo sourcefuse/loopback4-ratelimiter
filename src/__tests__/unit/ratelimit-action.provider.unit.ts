@@ -81,7 +81,6 @@ describe('Rate Limit action Service', () => {
     RatelimitActionMockProvider = proxyquire(
       '../../providers/ratelimit-action.provider',
       {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'express-rate-limit': mockExpressRatelimit,
       },
     ).RatelimitActionProvider;
