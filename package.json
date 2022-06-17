@@ -1,6 +1,6 @@
 {
   "name": "loopback4-ratelimiter",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "A rate limiting extension for loopback-next APIs",
   "keywords": [
     "loopback-extension",
@@ -110,12 +110,19 @@
       "master"
     ],
     "plugins": [
-      ["@semantic-release/commit-analyzer", {
-        "preset":"angular",
-        "releaseRules" : [
-          {"type": "chore", "scope":"deps","release":"patch"}
-        ]
-      }],
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "releaseRules": [
+            {
+              "type": "chore",
+              "scope": "deps",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
