@@ -1,6 +1,6 @@
 {
   "name": "loopback4-ratelimiter",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "A rate limiting extension for loopback-next APIs",
   "keywords": [
     "loopback-extension",
@@ -88,10 +88,10 @@
     "typescript": "~4.7.4"
   },
   "overrides": {
-  "peerDependencies": {
-    "loopback-connector-kv-redis": "^4.0.0",
-    "memcached": "^2.2.2"
-  }
+    "peerDependencies": {
+      "loopback-connector-kv-redis": "^4.0.0",
+      "memcached": "^2.2.2"
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
