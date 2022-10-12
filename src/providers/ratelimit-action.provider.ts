@@ -24,6 +24,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
   }
 
   async action(request: Request, response: Response): Promise<void> {
+    const enabledByDefault = this.config?.enabledByDefault ?? true;
     const metadata: RateLimitMetadata = await this.getMetadata();
     const dataStore = await this.getDatastore();
     if (metadata && !metadata.enabled) {
@@ -54,6 +55,12 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
         resolve();
       });
     });
-    await promise;
+    if (enabledByDefault === true) {
+      await promise;
+    } else if (enabledByDefault === false && metadata && metadata.enabled) {
+      await promise;
+    } else {
+      return Promise.resolve();
+    }
   }
 }
