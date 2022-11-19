@@ -5,9 +5,10 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
-import {RateLimiterComponent, RateLimitSecurityBindings} from '../../../';
-import {TestController} from './test.controller';
-import {StoreProvider} from './store.provider';
+import {RateLimiterComponent, RateLimitSecurityBindings} from '../../../..';
+
+import {StoreProvider} from '../../store.provider';
+import {TestController} from '../../test.controller';
 export {ApplicationConfig};
 export class TestApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),

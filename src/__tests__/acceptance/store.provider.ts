@@ -1,6 +1,7 @@
 import {inject, Provider, ValueOrPromise} from '@loopback/core';
 import {Store} from 'express-rate-limit';
-import {RateLimitOptions, RateLimitSecurityBindings} from '../../..';
+import {RateLimitSecurityBindings} from '../../keys';
+import {RateLimitOptions} from '../../types';
 import {InMemoryStore} from './in-memory-store';
 export const memoryStore = new InMemoryStore();
 export class StoreProvider implements Provider<Store> {

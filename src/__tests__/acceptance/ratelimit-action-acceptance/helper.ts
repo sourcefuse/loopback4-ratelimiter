@@ -4,7 +4,6 @@ import {
   givenHttpServerConfig,
 } from '@loopback/testlab';
 import {TestApplication} from './fixtures/application';
-
 export async function setUpApplication(): Promise<AppWithClient> {
   const app = new TestApplication({
     rest: givenHttpServerConfig(),

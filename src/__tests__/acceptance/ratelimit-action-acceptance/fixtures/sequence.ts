@@ -9,7 +9,7 @@ import {
   SequenceActions,
   SequenceHandler,
 } from '@loopback/rest';
-import {RateLimitAction, RateLimitSecurityBindings} from '../../../';
+import {RateLimitAction, RateLimitSecurityBindings} from '../../../..';
 
 export class MySequence implements SequenceHandler {
   constructor(
