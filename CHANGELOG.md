@@ -1,3 +1,5 @@
+## [4.1.4](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.1.3...v4.1.4) (2022-12-02)
+
 ## [4.1.3](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.1.2...v4.1.3) (2022-10-31)
 
 ## [4.1.2](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.1.1...v4.1.2) (2022-09-09)

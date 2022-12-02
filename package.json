@@ -1,6 +1,6 @@
 {
   "name": "loopback4-ratelimiter",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "description": "A rate limiting extension for loopback-next APIs",
   "keywords": [
     "loopback-extension",
