@@ -26,6 +26,7 @@ module.exports = {
 
   scopes: [
     {name: 'ci-cd'},
+    {name: 'chore'},
     {name: 'deps'},
     {name: 'tests'},
     {name: 'datasources'},
@@ -48,10 +49,10 @@ module.exports = {
     // used if allowCustomScopes is true
     customScope: 'Denote the SCOPE of this change:',
     subject: 'Write a SHORT, IMPERATIVE tense description of the change:\n',
-    body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
+    body: 'Provide a LONGER description of the change (mandatory). Use "\\n" to break new line:\n',
     breaking: 'List any BREAKING CHANGES (optional):\n',
     footer:
-      'List any ISSUES CLOSED by this change (optional). E.g.: AF-31, AF-34:\n',
+      'List any ISSUES CLOSED by this change (optional). E.g.: GH-31, GH-34:\n',
     confirmCommit: 'Are you sure you want to proceed with the commit above?',
   },
 
