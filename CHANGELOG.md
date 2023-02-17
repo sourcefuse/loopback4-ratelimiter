@@ -1,3 +1,23 @@
+## Release [v4.2.1](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.2.0..v4.2.1) February 17, 2023
+Welcome to the February 17, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Correct the changelog Format](https://github.com/sourcefuse/loopback4-ratelimiter/issues/97) :- [fix(chore): correct the changelog format ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/de1c55ac7e7b8376c9b195e18365df276b6e27d8) was commited on February 17, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - now issue description will be visible
+      
+      -  GH-97
+      
+  
+  - [Package Update - loopback4-ratelimiter](https://github.com/sourcefuse/loopback4-ratelimiter/issues/92) :- [fix(chore): remove all current vulnerability present in loopback4-ratelimiter ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/c9fca32e526109fb4d22663fbd22b2f7cd9a53c7) was commited on February 16, 2023 by [Sunny Tyagi](mailto:107617248+Tyagi-Sunny@users.noreply.github.com)
+    
+      - remove all current vulnerability present in loopback4-ratelimiter
+      
+      -  GH-92
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v4.2.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.1.4..v4.2.0) January 11, 2023
 Welcome to the January 11, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
