@@ -27,17 +27,16 @@ For redis datasource, you have to pass the name of a loopback4 datasource
 ```ts
 this.bind(RateLimitSecurityBindings.CONFIG).to({
   name: 'redis',
-  type:'RedisStore'
+  type: 'RedisStore',
 });
 ```
-
 
 For memcache datasource
 
 ```ts
 this.bind(RateLimitSecurityBindings.CONFIG).to({
   client: memoryClient,
-  type:'MemcachedStore'
+  type: 'MemcachedStore',
 });
 ```
 
@@ -72,6 +71,25 @@ this.bind(RateLimitSecurityBindings.CONFIG).to({
   type: 'RedisStore',
   max: 60,
   keyGenerator: rateLimitKeyGen,
+});
+```
+
+## EnabledbyDefault
+
+enabledByDefault option in Config Binding will provide a configurable mode.
+When its enabled (default value is true),it will provide a way to
+ratelimit all API's except a few that are disabled using a decorator.
+
+To disable ratelimiting for all APIs except those that are enabled using the decorator,
+you can set its value to false in config binding option.
+
+```
+this.bind(RateLimitSecurityBindings.CONFIG).to({
+  name: 'redis',
+  type: 'RedisStore',
+  max: 60,
+  keyGenerator: rateLimitKeyGen,
+  enabledByDefault:false
 });
 ```
 

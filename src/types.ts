@@ -15,12 +15,16 @@ export interface DataSourceConfig {
   uri?: string;
   collectionName?: string;
 }
-
+export interface RateLimitConfig {
+  enabledByDefault?: boolean;
+}
 export interface RateLimitAction {
   (request: Request, response: Response): Promise<void>;
 }
 
-export type RateLimitOptions = Writable<Partial<Options>> & DataSourceConfig;
+export type RateLimitOptions = Writable<Partial<Options>> &
+  DataSourceConfig &
+  RateLimitConfig;
 
 /**
  * Rate limit metadata interface for the method decorator
