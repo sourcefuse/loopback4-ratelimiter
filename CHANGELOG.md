@@ -1,3 +1,44 @@
+## Release [v4.3.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.2.1..v4.3.0) March 14, 2023
+Welcome to the March 14, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [Need refactoring as middleware](https://github.com/sourcefuse/loopback4-ratelimiter/issues/71) :- [feat(middleware): feat(middleware): add ratelimit middleware ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/8dc488939802a51e4de16aa6bd8a84aeb3490c5d) was commited on March 14, 2023 by [Surbhi Sharma](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - add ratelimit middleware.
+      
+      -  GH-71
+      
+  
+  - [Add the sonar properties](https://github.com/sourcefuse/loopback4-ratelimiter/issues/103) :- [chore(ci-cd): added the missing sonar properties ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/0eb2382760cf124f6afcc16e0337e4bb08b52f3f) was commited on March 14, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - sonar properties to be run on PR and master
+      
+      -  GH-103
+      
+  
+  - [ loopback version update ](https://github.com/sourcefuse/loopback4-ratelimiter/issues/101) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/d42de5f8e367e347c6d5d68b3a4fb3f7395f33cb) was commited on March 10, 2023 by [Gautam Agarwal](mailto:108651274+gautam23-sf@users.noreply.github.com)
+    
+      - loopback version update
+      
+      -  GH-101
+      
+  
+  - [Option to apply ratelimiting over a single API](https://github.com/sourcefuse/loopback4-ratelimiter/issues/46) :- [feat(providers): feat(providers): add option to apply ratelimiting over single API ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/e29f6c1b87737dd5acd85afde96d296fa3ec6c78) was commited on March 10, 2023 by [Surbhi Sharma](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - Added an option to apply ratelimiting over single API
+      
+      -  GH-46
+      
+  
+  - [Stale Bot missing in the repository](https://github.com/sourcefuse/loopback4-ratelimiter/issues/99) :- [chore(chore): add github stale bot ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/4f8a18dd86a5e8cf7af4de9d9ba3813cdfa4cf70) was commited on February 27, 2023 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - Added stale.yml file to configure stale options
+      
+      -  GH-99
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v4.2.1](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.2.0..v4.2.1) February 17, 2023
 Welcome to the February 17, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
