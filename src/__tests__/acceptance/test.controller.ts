@@ -1,5 +1,5 @@
 import {get} from '@loopback/rest';
-import {ratelimit} from '../../..';
+import {ratelimit} from '../..';
 
 export class TestController {
   constructor() {}

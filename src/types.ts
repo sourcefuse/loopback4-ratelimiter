@@ -36,3 +36,6 @@ export interface RateLimitMetadata {
 
 export type Store = MemcachedStore | MongoStore | RedisStore;
 export type Writable<T> = {-readonly [P in keyof T]: T[P]};
+export interface RateLimitMiddlewareConfig {
+  RatelimitActionMiddleware?: boolean;
+}

@@ -204,6 +204,23 @@ async userDetails(
 }
 ```
 
+## Middleware Sequence Support
+
+As action based sequence will be deprecated soon, we have provided support for middleware based sequences. If you are using middleware sequence you can add ratelimit to your application by enabling ratelimit action middleware. This can be done by binding the RateLimitSecurityBindings.CONFIG in application.ts :
+
+```ts
+this.bind(RateLimitSecurityBindings.RATELIMITCONFIG).to({
+  RatelimitActionMiddleware: true,
+});
+```
+
+this.component(RateLimiterComponent);
+
+```
+
+This binding needs to be done before adding the RateLimiter component to your application.
+Apart from this all other steps will remain the same.
+
 ## Feedback
 
 If you've noticed a bug or have a question or have a feature request, [search the issue tracker](https://github.com/sourcefuse/loopback4-ratelimiter/issues) to see if someone else in the community has already created a ticket.
@@ -222,3 +239,4 @@ Code of conduct guidelines [here](https://github.com/sourcefuse/loopback4-rateli
 ## License
 
 [MIT](https://github.com/sourcefuse/loopback4-ratelimiter/blob/master/LICENSE)
+```
