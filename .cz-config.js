@@ -36,6 +36,7 @@ module.exports = {
     {name: 'repositories'},
     {name: 'typings'},
     {name: 'middleware'},
+    {name: 'maintenance'},
   ],
 
   appendBranchNameToCommitMessage: false,
