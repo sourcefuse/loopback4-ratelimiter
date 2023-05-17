@@ -25,8 +25,9 @@ export class RatelimitDatasourceProvider implements Provider<Store> {
   async action(): Promise<Store> {
     const metadata: RateLimitMetadata = await this.getMetadata();
 
+    // // First check if rate limit options available at method level
     const operationMetadata = metadata?.options ?? {};
-
+    // Create options based on global config and method level config
     const opts = {...this.config, ...operationMetadata};
     const var1 = 60;
     const var2 = 1000;
@@ -34,38 +35,38 @@ export class RatelimitDatasourceProvider implements Provider<Store> {
     if (this.config?.type === 'MemcachedStore') {
       const expiration = (opts.windowMs ?? var1 * var2) / var2;
       return new MemcachedStore({client: this.config?.client, expiration});
-    }
-
-    if (this.config?.type === 'MongoStore') {
+    } else if (this.config?.type === 'MongoStore') {
       const expireTimeMs = (opts.windowMs ?? var1 * var2) / var2;
       return new MongoStore({
         uri: this.config?.uri,
         collectionName: this.config?.collectionName,
         expireTimeMs,
       });
-    }
+    } else {
+      const redisDS = (await this.application.get(
+        `datasources.${this.config?.name}`,
+      )) as juggler.DataSource;
+      if (!redisDS?.connector) {
+        throw new HttpErrors.InternalServerError('Invalid Datasource');
+      }
 
-    const redisDS = (await this.application.get(
-      `datasources.${this.config?.name}`,
-    )) as juggler.DataSource;
-    if (redisDS?.connector) {
-      const sendCommand = async (...args: string[]) => {
-        const command = `${args[0]}`;
-        args.splice(0, 1);
-        try {
-          let res = await this.executeRedisCommand(redisDS, command, args);
-          if (command.toLocaleLowerCase() === 'script') {
-            res = decoder.decode(res as ArrayBuffer);
+      return new RedisStore({
+        sendCommand: async (...args: string[]) => {
+          const command = `${args[0]}`;
+          args.splice(0, 1);
+          let res;
+          try {
+            res = await this.executeRedisCommand(redisDS, command, args);
+            if (command.toLocaleLowerCase() === 'script') {
+              res = decoder.decode(res as ArrayBuffer);
+            }
+          } catch (err) {
+            throw new Error(`Could not execute redis command ${err}`);
           }
           return res as RedisReply;
-        } catch (err) {
-          throw new Error(`Could not execute redis command ${err}`);
-        }
-      };
-      return new RedisStore({sendCommand});
+        },
+      });
     }
-
-    throw new HttpErrors.InternalServerError('Invalid Datasource');
   }
 
   // returns promisified execute function
