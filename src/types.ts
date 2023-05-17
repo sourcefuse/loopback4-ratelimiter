@@ -10,7 +10,7 @@ export type RedisClientType = IORedis.Redis | RedisClient;
 
 export interface DataSourceConfig {
   name: string;
-  client?: string | RedisClientType | undefined;
+  client?: string | RedisClientType;
   type?: string;
   uri?: string;
   collectionName?: string;
