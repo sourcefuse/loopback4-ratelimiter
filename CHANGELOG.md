@@ -1,3 +1,55 @@
+## Release [v5.0.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.3.1..v5.0.0) June 7, 2023
+Welcome to the June 7, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [chore(deps): loopback version updates ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/b979a75012ea879731aad2783c59bc3312fd793d) was commited on June 1, 2023 by [RaghavaroraSF](mailto:97958393+RaghavaroraSF@users.noreply.github.com)
+    
+      - using @loopback/core v5.0.0
+      
+      -  GH-106
+      
+      -  Co-authored-by: Shubham P &lt;shubham.prajapat@sourcefuse.com&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [fix(chore): fix sonar code smells ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/0158612b04af41278a926b72e4836051e67c3b27) was commited on May 17, 2023 by [arpit1503khanna](mailto:108673359+arpit1503khanna@users.noreply.github.com)
+    
+      - * fix(chore): fixing sonar smells
+      
+      -  resolving sonar smells to improve quality gate
+      
+      -  GH-94
+      
+      - * fix(chore): fix sonar code smells
+      
+      -  Resolving sonar smells to improve quality gate
+      
+      -  GH-94
+      
+      - ---------
+      
+      -  Co-authored-by: Raghav &lt;Raghav.arora@sourcefuse.com&gt;
+      
+  
+  - [Remove support for node v14 ](https://github.com/sourcefuse/loopback4-ratelimiter/issues/110) :- [feat(chore): remove support for node v14,v12,v10 ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/8a00196c695661569536c006377eeb4a756436f1) was commited on May 11, 2023 by [RaghavaroraSF](mailto:97958393+RaghavaroraSF@users.noreply.github.com)
+    
+      - Version 14, v12, v10 of Nodejs reached its end of life
+      
+      -  BREAKING CHANGE:
+      
+      - End of life of node v14, node v12 and node v10
+      
+      -  GH-110
+      
+  
+  - [License  and Copyright Headers’ Year Upgradation](https://github.com/sourcefuse/loopback4-ratelimiter/issues/108) :- [chore(maintenance): update license and copyright headers ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/8fb49b6096d45d00256da57c8755d813fa7d17fd) was commited on May 4, 2023 by [RaghavaroraSF](mailto:97958393+RaghavaroraSF@users.noreply.github.com)
+    
+      - to reflect the year change
+      
+      -  GH-108
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v4.3.1](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.3.0..v4.3.1) April 24, 2023
 Welcome to the April 24, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
