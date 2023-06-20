@@ -212,7 +212,7 @@ As action based sequence will be deprecated soon, we have provided support for m
 this.bind(RateLimitSecurityBindings.RATELIMITCONFIG).to({
   RatelimitActionMiddleware: true,
 });
-```
+
 
 this.component(RateLimiterComponent);
 
@@ -239,4 +239,3 @@ Code of conduct guidelines [here](https://github.com/sourcefuse/loopback4-rateli
 ## License
 
 [MIT](https://github.com/sourcefuse/loopback4-ratelimiter/blob/master/LICENSE)
-```
