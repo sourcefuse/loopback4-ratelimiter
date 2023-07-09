@@ -7,12 +7,14 @@ import {
   RateLimitMetadataProvider,
   RatelimitDatasourceProvider,
 } from './providers';
-import {RateLimitMiddlewareConfig} from './types';
+import {RateLimitMiddlewareConfig, RateLimitOptions} from './types';
 
 export class RateLimiterComponent implements Component {
   constructor(
     @inject(RateLimitSecurityBindings.RATELIMITCONFIG, {optional: true})
     private readonly ratelimitConfig?: RateLimitMiddlewareConfig,
+    @inject(RateLimitSecurityBindings.CONFIG, {optional: true})
+    private readonly configOptions?: RateLimitOptions,
   ) {
     this.providers = {
       [RateLimitSecurityBindings.RATELIMIT_SECURITY_ACTION.key]:
@@ -21,9 +23,11 @@ export class RateLimiterComponent implements Component {
         RatelimitDatasourceProvider,
       [RateLimitSecurityBindings.METADATA.key]: RateLimitMetadataProvider,
     };
-    this.bindings.push(
-      Binding.bind(RateLimitSecurityBindings.CONFIG.key).to(null),
-    );
+    if (!this.configOptions) {
+      this.bindings.push(
+        Binding.bind(RateLimitSecurityBindings.CONFIG.key).to(null),
+      );
+    }
     if (this.ratelimitConfig?.RatelimitActionMiddleware) {
       this.bindings.push(createMiddlewareBinding(RatelimitMiddlewareProvider));
     }
