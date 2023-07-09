@@ -1,3 +1,23 @@
+## Release [v5.0.1](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v5.0.0..v5.0.1) July 9, 2023
+Welcome to the July 9, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [datasource not found error](https://github.com/sourcefuse/loopback4-ratelimiter/issues/116) :- [fix(chore): avoid setting config to null always ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/d857fb36114970e222a3c927366e3cac7ba95d04) was commited on July 9, 2023 by [Shubham P](mailto:shubham.prajapat@sourcefuse.com)
+    
+      - removes the need of setting config binding after the component is constructed
+      
+      -  GH-116
+      
+  
+  - [loopback4-ratelimiter:fix readme file](https://github.com/sourcefuse/loopback4-ratelimiter/issues/113) :- [docs(middleware): missing backticks in readme file ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/c7c2dce2ecd2a133b5530e54529b309e78131b26) was commited on June 20, 2023 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - missing backticks in readme file
+      
+      -  GH-113
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v5.0.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v4.3.1..v5.0.0) June 7, 2023
 Welcome to the June 7, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
