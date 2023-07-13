@@ -174,7 +174,7 @@ async resetPassword(
 }
 ```
 
-- You can also disable rate limiting for specific API methods using the decorator like below.
+- You can also disable rate limiting for specific API methods using the decorator like below or use the [skip handler](#skip-handler)
 
 ```ts
 @ratelimit(false)
@@ -213,13 +213,32 @@ this.bind(RateLimitSecurityBindings.RATELIMITCONFIG).to({
   RatelimitActionMiddleware: true,
 });
 
-
 this.component(RateLimiterComponent);
-
 ```
 
 This binding needs to be done before adding the RateLimiter component to your application.
 Apart from this all other steps will remain the same.
+
+## Skip Handler
+
+By default all the paths are rate limited based on the configuration provided, but can be skipped using the skip handler.
+
+Following is the example of an handler that returns true if the path starts with `/obf/` such as `/obf/css/style.css`, `/obf/fonts`, `/obf/stats` etc.
+
+```diff
+const obfPath = process.env.OBF_PATH ?? '/obf';
+
+this.bind(RateLimitSecurityBindings.CONFIG).to({
+  name: RedisDataSource.dataSourceName,
+  type: 'RedisStore',
++  skip: (request, response) => {
++    const isOBFSubpath = Boolean(
++      request.path.match(new RegExp(`^/$+{obfPath.replace(/^\//, '')}/.+`)),
++    );
++    return !!isOBFSubpath;
+  },
+});
+```
 
 ## Feedback
 
