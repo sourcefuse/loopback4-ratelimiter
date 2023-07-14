@@ -1,3 +1,42 @@
+## Release [v5.0.2](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v5.0.1..v5.0.2) July 14, 2023
+Welcome to the July 14, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [docs(chore): add arc branding ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/41acf0154fcf48163f8895d8d8132e06487750d3) was commited on July 14, 2023 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - * docs(chore): add arc branding
+      
+      -  add arc branding
+      
+      -  GH-122
+      
+      - * docs(chore): make overview a h2 level heading
+      
+      -  by adding and extra hash
+      
+      -  GH-122
+      
+      - ---------
+      
+      -  Co-authored-by: Shubham P &lt;shubham.prajapat@sourcefuse.com&gt;
+      
+  
+  - [loopback version update](https://github.com/sourcefuse/loopback4-ratelimiter/issues/106) :- [chore(deps): loopback version update ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/8642bdaee5c71821dea7857a968b4b064b90b0bb) was commited on July 14, 2023 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - loopback version update
+      
+      -  GH-106
+      
+  
+  - [loopback4-ratelimiter:Update readme file](https://github.com/sourcefuse/loopback4-ratelimiter/issues/120) :- [docs(chore): add skip handler example ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/3daa4802612ccbb51f0b536430c607d2ea0cfb06) was commited on July 14, 2023 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - for obf subpaths
+      
+      -  GH-120
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v5.0.1](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v5.0.0..v5.0.1) July 9, 2023
 Welcome to the July 9, 2023 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
