@@ -20,7 +20,7 @@
 </a>
 </p>
 
-# Overview
+## Overview
 
 A simple loopback-next extension for rate limiting in loopback applications. This extension uses [express-rate-limit](https://github.com/nfriedly/express-rate-limit) under the hood with redis, memcache and mongodDB used as store for rate limiting key storage using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis), [rate-limit-memcached](https://github.com/linyows/rate-limit-memcached) and [rate-limit-mongo](https://github.com/2do2go/rate-limit-mongo)
 
