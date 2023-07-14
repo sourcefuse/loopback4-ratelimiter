@@ -1,6 +1,26 @@
-# loopback4-ratelimiter
+<a href="https://sourcefuse.github.io/arc-docs/arc-api-docs" target="_blank"><img src="https://github.com/sourcefuse/loopback4-microservice-catalog/blob/master/docs/assets/logo-dark-bg.png?raw=true" alt="ARC By SourceFuse logo" title="ARC By SourceFuse" align="right" width="150" /></a>
 
-[![LoopBack](<https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
+# [loopback4-ratelimiter](https://github.com/sourcefuse/loopback4-ratelimiter)
+
+<p align="left">
+<a href="https://www.npmjs.com/package/loopback4-ratelimiter">
+<img src="https://img.shields.io/npm/v/loopback4-ratelimiter.svg" alt="npm version" />
+</a>
+<a href="https://github.com/sourcefuse/loopback4-ratelimiter/graphs/contributors" target="_blank">
+<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/sourcefuse/loopback4-ratelimiter">
+</a>
+<a href="https://www.npmjs.com/package/loopback4-ratelimiter" target="_blank">
+<img alt="downloads" src="https://img.shields.io/npm/dw/loopback4-ratelimiter.svg">
+</a>
+<a href="https://github.com/sourcefuse/loopback4-ratelimiter/blob/master/LICENSE">
+<img src="https://img.shields.io/github/license/sourcefuse/loopback4-ratelimiter" alt="License" />
+</a>
+<a href="https://loopback.io/" target="_blank">
+<img alt="Powered By LoopBack 4" src="https://img.shields.io/badge/Powered%20by-LoopBack 4-brightgreen" />
+</a>
+</p>
+
+# Overview
 
 A simple loopback-next extension for rate limiting in loopback applications. This extension uses [express-rate-limit](https://github.com/nfriedly/express-rate-limit) under the hood with redis, memcache and mongodDB used as store for rate limiting key storage using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis), [rate-limit-memcached](https://github.com/linyows/rate-limit-memcached) and [rate-limit-mongo](https://github.com/2do2go/rate-limit-mongo)
 
