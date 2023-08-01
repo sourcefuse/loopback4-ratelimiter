@@ -4,7 +4,18 @@ metadata:
   name: loopback4-ratelimiter
   annotations:
     github.com/project-slug: sourcefuse/loopback4-ratelimiter
+  namespace: arc
+  description: A Rate Limiting Extension for Loopback 4 Applications.
+  tags:
+    - rate-limiting
+    - loopback
+    - extension
+  links:
+    - url: https://npmjs.com/package/loopback4-ratelimiter
+      title: NPM Package
+    - url: https://loopback.io/doc/en/lb4/Extending-LoopBack-4.html#overview
+      title: Extending LoopBack
 spec:
-  type: other
-  lifecycle: unknown
+  type: component
+  lifecycle: production
   owner: sourcefuse
