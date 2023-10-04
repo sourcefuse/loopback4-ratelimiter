@@ -1,14 +1,14 @@
 {
   "name": "loopback4-ratelimiter",
   "version": "5.0.2",
-  "description": "A rate limiting extension for loopback-next APIs",
+  "description": "A rate limiting extension for loopback-next APIs.",
   "keywords": [
     "loopback-extension",
     "loopback"
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "build": "npm run clean && lb-tsc",
