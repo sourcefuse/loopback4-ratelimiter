@@ -4,6 +4,7 @@ metadata:
   name: loopback4-ratelimiter
   annotations:
     github.com/project-slug: sourcefuse/loopback4-ratelimiter
+    backstage.io/techdocs-ref: dir:.
   namespace: arc
   description: A Rate Limiting Extension for Loopback 4 Applications.
   tags:

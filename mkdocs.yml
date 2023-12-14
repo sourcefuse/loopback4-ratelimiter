@@ -1,0 +1,5 @@
+site_name: loopback4-ratelimiter
+site_description: loopback4-ratelimiter
+
+plugins:
+  - techdocs-core
