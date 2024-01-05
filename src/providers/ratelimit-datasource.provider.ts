@@ -1,12 +1,13 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {Getter, juggler} from '@loopback/repository';
-import {RateLimitMetadata, RateLimitOptions, Store} from '../types';
-import {RateLimitSecurityBindings} from '../keys';
-import RedisStore, {RedisReply} from 'rate-limit-redis';
+import {HttpErrors, RestApplication} from '@loopback/rest';
 import MemcachedStore from 'rate-limit-memcached';
 import MongoStore from 'rate-limit-mongo';
-import {HttpErrors, RestApplication} from '@loopback/rest';
+import RedisStore, {RedisReply} from 'rate-limit-redis';
 import {TextDecoder} from 'util';
+import {RateLimitSecurityBindings} from '../keys';
+import {RateLimitMetadata, RateLimitOptions, Store} from '../types';
+
 const decoder = new TextDecoder('utf-8');
 export class RatelimitDatasourceProvider implements Provider<Store> {
   constructor(
@@ -35,38 +36,40 @@ export class RatelimitDatasourceProvider implements Provider<Store> {
     if (this.config?.type === 'MemcachedStore') {
       const expiration = (opts.windowMs ?? var1 * var2) / var2;
       return new MemcachedStore({client: this.config?.client, expiration});
-    } else if (this.config?.type === 'MongoStore') {
+    }
+    if (this.config?.type === 'MongoStore') {
       const expireTimeMs = (opts.windowMs ?? var1 * var2) / var2;
       return new MongoStore({
         uri: this.config?.uri,
         collectionName: this.config?.collectionName,
         expireTimeMs,
       });
-    } else {
-      const redisDS = (await this.application.get(
-        `datasources.${this.config?.name}`,
-      )) as juggler.DataSource;
-      if (!redisDS?.connector) {
-        throw new HttpErrors.InternalServerError('Invalid Datasource');
-      }
-
-      return new RedisStore({
-        sendCommand: async (...args: string[]) => {
-          const command = `${args[0]}`;
-          args.splice(0, 1);
-          let res;
-          try {
-            res = await this.executeRedisCommand(redisDS, command, args);
-            if (command.toLocaleLowerCase() === 'script') {
-              res = decoder.decode(res as ArrayBuffer);
-            }
-          } catch (err) {
-            throw new Error(`Could not execute redis command ${err}`);
-          }
-          return res as RedisReply;
-        },
-      });
     }
+
+    const redisDS = (await this.application.get(
+      `datasources.${this.config?.name}`,
+    )) as juggler.DataSource;
+
+    if (!redisDS?.connector) {
+      throw new HttpErrors.InternalServerError('Invalid Datasource');
+    }
+
+    return new RedisStore({
+      sendCommand: async (...args: string[]) => {
+        const command = `${args[0]}`;
+        args.splice(0, 1);
+        let res;
+        try {
+          res = await this.executeRedisCommand(redisDS, command, args);
+          if (command.toLocaleLowerCase() === 'script') {
+            res = decoder.decode(res as ArrayBuffer);
+          }
+        } catch (err) {
+          throw new Error(`Could not execute redis command ${err}`);
+        }
+        return res as RedisReply;
+      },
+    });
   }
 
   // returns promisified execute function

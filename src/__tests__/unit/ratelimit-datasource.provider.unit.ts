@@ -14,15 +14,13 @@ describe('Rate Limit datasource Service', () => {
       };
       const ratelimitDatasourceProvider = new RatelimitDatasourceProvider(
         () => {
-          return new Promise((resolve) => {
-            resolve({enabled: true});
-          });
+          return Promise.resolve({enabled: true});
         },
         restApplication,
         config,
       ).value();
       let result;
-      await ratelimitDatasourceProvider.then((value) => {
+      await ratelimitDatasourceProvider.then(value => {
         result = value;
       });
       expect(result).to.have.properties(['expiration', 'prefix', 'client']);
@@ -37,15 +35,13 @@ describe('Rate Limit datasource Service', () => {
       };
       const ratelimitDatasourceProvider = new RatelimitDatasourceProvider(
         () => {
-          return new Promise((resolve) => {
-            resolve({enabled: true});
-          });
+          return Promise.resolve({enabled: true});
         },
         restApplication,
         config,
       ).value();
       let result;
-      await ratelimitDatasourceProvider.then((value) => {
+      await ratelimitDatasourceProvider.then(value => {
         result = value;
       });
       expect(result).to.have.properties(['dbOptions', 'expireTimeMs']);
@@ -57,15 +53,13 @@ describe('Rate Limit datasource Service', () => {
       };
       const ratelimitDatasourceProvider = await new RatelimitDatasourceProvider(
         () => {
-          return new Promise((resolve) => {
-            resolve({enabled: true});
-          });
+          return Promise.resolve({enabled: true});
         },
         restApplication,
         config,
       )
         .value()
-        .catch((err) => err.msg);
+        .catch(err => err.msg);
       expect(ratelimitDatasourceProvider).to.eql(undefined);
     });
   });

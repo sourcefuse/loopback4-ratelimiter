@@ -1,11 +1,11 @@
-import {RestApplication, Request, Response} from '@loopback/rest';
-import {RatelimitActionProvider} from '../../providers';
-import * as RateLimit from 'express-rate-limit';
 import {Constructor} from '@loopback/core';
-import sinon from 'sinon';
-import proxyquire from 'proxyquire';
+import {Request, Response, RestApplication} from '@loopback/rest';
 import {expect} from '@loopback/testlab';
+import * as RateLimit from 'express-rate-limit';
 import {IncrementResponse} from 'express-rate-limit';
+import proxyquire from 'proxyquire';
+import sinon from 'sinon';
+import {RatelimitActionProvider} from '../../providers';
 
 describe('Rate Limit action Service', () => {
   let RatelimitActionMockProvider: Constructor<RatelimitActionProvider>;
@@ -45,9 +45,7 @@ describe('Rate Limit action Service', () => {
     it('returns promise if metadata is not enabled', async () => {
       const result = new RatelimitActionProvider(
         () => {
-          return new Promise((resolve, reject) => {
-            resolve(dataStore);
-          });
+          return Promise.resolve(dataStore);
         },
         rateLimitMetadataFalse,
         restApplication,
@@ -55,6 +53,7 @@ describe('Rate Limit action Service', () => {
       await expect(result).to.be.fulfilled();
     });
 
+    const EXPECT_TIMEOUT = 5000;
     it('returns promise if metadata is enabled', async () => {
       const result = new RatelimitActionMockProvider(
         dataStore,
@@ -62,17 +61,23 @@ describe('Rate Limit action Service', () => {
         restApplication,
       )
         .action({} as Request, {} as Response)
-        .catch((err) => err.message);
+        .catch(err => err.message);
       await expect(result).to.be.fulfilled();
-    }).timeout(5000);
+    }).timeout(EXPECT_TIMEOUT);
   });
 
   function increment(key: string): IncrementResponse {
     return {totalHits: 0, resetTime: new Date()};
   }
-  function decrement(key: string): void {}
-  function resetKey(key: string): void {}
-  function resetAll(): void {}
+  function decrement(key: string): void {
+    return;
+  }
+  function resetKey(key: string): void {
+    return;
+  }
+  function resetAll(): void {
+    return;
+  }
 
   function setupMockRatelimitAction() {
     const mockExpressRatelimit = sinon.stub().returns({
