@@ -10,7 +10,8 @@ export class StoreProvider implements Provider<Store> {
     private readonly config?: RateLimitOptions,
   ) {}
   value(): ValueOrPromise<Store> {
-    const windowMs = this.config?.windowMs ?? 60000;
+    const DEFAULT_WINDOW_MS = 60000;
+    const windowMs = this.config?.windowMs ?? DEFAULT_WINDOW_MS;
     memoryStore.setInterval(windowMs);
     return memoryStore;
   }

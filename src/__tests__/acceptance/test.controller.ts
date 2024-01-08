@@ -2,7 +2,6 @@ import {get} from '@loopback/rest';
 import {ratelimit} from '../..';
 
 export class TestController {
-  constructor() {}
   @get('/test', {
     responses: {
       '200': {

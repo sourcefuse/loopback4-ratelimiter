@@ -15,7 +15,8 @@ export class InMemoryStore implements Store {
 
   constructor(options?: Options) {
     this.hits = {};
-    this.windowMs = options?.windowMs ?? 60000;
+    const DEFAULT_WINDOW_MS = 60000;
+    this.windowMs = options?.windowMs ?? DEFAULT_WINDOW_MS;
     // Then calculate the reset time using that
     this.resetTime = calculateNextResetTime(this.windowMs);
   }

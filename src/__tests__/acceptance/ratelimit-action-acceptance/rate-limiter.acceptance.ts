@@ -2,6 +2,10 @@ import {Client} from '@loopback/testlab';
 import {memoryStore} from '../store.provider';
 import {TestApplication} from './fixtures/application';
 import {setUpApplication} from './helper';
+
+const OK_STATUS_CODE = 200;
+const TOO_MANY_REQS_CODE = 429;
+
 describe('Acceptance Test Cases', () => {
   let app: TestApplication;
   let client: Client;
@@ -15,48 +19,50 @@ describe('Acceptance Test Cases', () => {
 
   after(async () => app.stop());
 
+  const MAX_REQUESTS = 5;
   it('should hit end point when number of requests is less than max requests allowed', async () => {
     //Max request is set to 5 while binding
-    for (let i = 0; i < 4; i++) {
-      await client.get('/test').expect(200);
+    for (let i = 0; i < MAX_REQUESTS; i++) {
+      await client.get('/test').expect(OK_STATUS_CODE);
     }
   });
 
   it('should hit end point when number of requests is equal to max requests allowed', async () => {
     //Max request is set to 5 while binding
-    for (let i = 0; i < 5; i++) {
-      await client.get('/test').expect(200);
+    for (let i = 0; i < MAX_REQUESTS; i++) {
+      await client.get('/test').expect(OK_STATUS_CODE);
     }
   });
 
   it('should give error when number of requests is greater than max requests allowed', async () => {
     //Max request is set to 5 while binding
-    for (let i = 0; i < 5; i++) {
-      await client.get('/test').expect(200);
+    for (let i = 0; i < MAX_REQUESTS; i++) {
+      await client.get('/test').expect(OK_STATUS_CODE);
     }
-    await client.get('/test').expect(429);
+    await client.get('/test').expect(TOO_MANY_REQS_CODE);
   });
 
   it('should overwrite the default behaviour when rate limit decorator is applied', async () => {
     //Max request is set to 1 in decorator
-    await client.get('/testDecorator').expect(200);
-    await client.get('/testDecorator').expect(429);
+    await client.get('/testDecorator').expect(OK_STATUS_CODE);
+    await client.get('/testDecorator').expect(TOO_MANY_REQS_CODE);
   });
 
   it('should throw no error if requests more than max are sent after window resets', async () => {
     //Max request is set to 5 while binding
-    for (let i = 0; i < 5; i++) {
-      await client.get('/test').expect(200);
+    for (let i = 0; i < MAX_REQUESTS; i++) {
+      await client.get('/test').expect(OK_STATUS_CODE);
     }
+    const TIMEOUT = 2000;
     setTimeout(() => {
       client
         .get('/test')
-        .expect(200)
+        .expect(OK_STATUS_CODE)
         .then(
           () => {},
           () => {},
         );
-    }, 2000);
+    }, TIMEOUT);
   });
 
   async function clearStore() {
