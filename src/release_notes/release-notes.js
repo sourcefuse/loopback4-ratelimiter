@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const releaseNotes = require('git-release-notes');
 const simpleGit = require('simple-git/promise');
 const path = require('path');
