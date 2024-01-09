@@ -37,7 +37,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
       const operationMetadata = metadata ? metadata.options : {};
 
       // Create options based on global config and method level config
-      const opts = Object.assign({}, this.config, operationMetadata);
+      const opts = {...this.config, ...operationMetadata};
 
       if (dataStore) {
         opts.store = dataStore;
