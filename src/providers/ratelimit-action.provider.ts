@@ -1,6 +1,7 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {Getter} from '@loopback/repository';
-import {Request, Response, RestApplication, HttpErrors} from '@loopback/rest';
+import {HttpErrors, Request, Response, RestApplication} from '@loopback/rest';
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as RateLimit from 'express-rate-limit';
 import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitAction, RateLimitMetadata, RateLimitOptions} from '../types';

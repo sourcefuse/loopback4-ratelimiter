@@ -11,6 +11,7 @@ import {
   asMiddleware,
   RestMiddlewareGroups,
 } from '@loopback/rest';
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as RateLimit from 'express-rate-limit';
 import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitMetadata, RateLimitOptions} from '../types';
