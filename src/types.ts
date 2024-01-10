@@ -18,9 +18,10 @@ export interface DataSourceConfig {
 export interface RateLimitConfig {
   enabledByDefault?: boolean;
 }
-export interface RateLimitAction {
-  (request: Request, response: Response): Promise<void>;
-}
+export type RateLimitAction = (
+  request: Request,
+  response: Response,
+) => Promise<void>;
 
 export type RateLimitOptions = Writable<Partial<Options>> &
   DataSourceConfig &
