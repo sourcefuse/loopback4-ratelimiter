@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import {get} from '@loopback/rest';
 import {ratelimit} from '../..';
 

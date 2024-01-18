@@ -1,6 +1,7 @@
 import {Constructor} from '@loopback/core';
 import {Request, Response, RestApplication} from '@loopback/rest';
 import {expect} from '@loopback/testlab';
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as RateLimit from 'express-rate-limit';
 import {IncrementResponse} from 'express-rate-limit';
 import proxyquire from 'proxyquire';
@@ -86,7 +87,6 @@ describe('Rate Limit action Service', () => {
     RatelimitActionMockProvider = proxyquire(
       '../../providers/ratelimit-action.provider',
       {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'express-rate-limit': mockExpressRatelimit,
       },
     ).RatelimitActionProvider;
