@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {Getter, juggler} from '@loopback/repository';
 import {HttpErrors, RestApplication} from '@loopback/rest';

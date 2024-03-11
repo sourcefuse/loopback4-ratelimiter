@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import {Request, Response} from '@loopback/rest';
 import {Options} from 'express-rate-limit';
 import MemcachedStore from 'rate-limit-memcached';
