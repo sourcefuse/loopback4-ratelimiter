@@ -1,7 +1,7 @@
 import {Constructor} from '@loopback/core';
 import {Request, Response, RestApplication} from '@loopback/rest';
 import {expect} from '@loopback/testlab';
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 import * as RateLimit from 'express-rate-limit';
 import {IncrementResponse} from 'express-rate-limit';
 import proxyquire from 'proxyquire';
