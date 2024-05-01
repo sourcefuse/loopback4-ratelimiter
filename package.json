@@ -46,7 +46,7 @@
   "dependencies": {
     "@loopback/boot": "^7.0.0",
     "@loopback/context": "^7.0.0",
-    "@loopback/core": "^6.0.0",
+    "@loopback/core": "^6.0.1",
     "@loopback/repository": "^7.0.0",
     "@loopback/rest": "^14.0.0",
     "express-rate-limit": "^6.4.0",
