@@ -79,6 +79,7 @@ export class RatelimitMiddlewareProvider implements Provider<Middleware> {
     });
     if (enabledByDefault === true) {
       await promise;
+      // eslint-disable-next-line  @typescript-eslint/prefer-optional-chain
     } else if (enabledByDefault === false && metadata && metadata.enabled) {
       await promise;
     } else {

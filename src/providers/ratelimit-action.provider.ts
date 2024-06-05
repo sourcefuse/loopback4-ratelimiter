@@ -58,6 +58,7 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
     });
     if (enabledByDefault === true) {
       await promise;
+      // eslint-disable-next-line  @typescript-eslint/prefer-optional-chain
     } else if (enabledByDefault === false && metadata && metadata.enabled) {
       await promise;
     } else {
