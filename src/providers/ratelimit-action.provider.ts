@@ -33,34 +33,35 @@ export class RatelimitActionProvider implements Provider<RateLimitAction> {
     }
 
     // Perform rate limiting now
-    const promise = new Promise<void>((resolve, reject) => {
-      // First check if rate limit options available at method level
-      const operationMetadata = metadata ? metadata.options : {};
+    const promise = () =>
+      new Promise<void>((resolve, reject) => {
+        // First check if rate limit options available at method level
+        const operationMetadata = metadata ? metadata.options : {};
 
-      // Create options based on global config and method level config
-      const opts = {...this.config, ...operationMetadata};
+        // Create options based on global config and method level config
+        const opts = {...this.config, ...operationMetadata};
 
-      if (dataStore) {
-        opts.store = dataStore;
-      }
-
-      opts.message = new HttpErrors.TooManyRequests(
-        opts.message?.toString() ?? 'Method rate limit reached !',
-      );
-
-      const limiter = RateLimit.default(opts);
-      limiter(request, response, (err: unknown) => {
-        if (err) {
-          reject(err);
+        if (dataStore) {
+          opts.store = dataStore;
         }
-        resolve();
+
+        opts.message = new HttpErrors.TooManyRequests(
+          opts.message?.toString() ?? 'Method rate limit reached !',
+        );
+
+        const limiter = RateLimit.default(opts);
+        limiter(request, response, (err: unknown) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        });
       });
-    });
     if (enabledByDefault === true) {
-      await promise;
+      await promise();
       // eslint-disable-next-line  @typescript-eslint/prefer-optional-chain
     } else if (enabledByDefault === false && metadata && metadata.enabled) {
-      await promise;
+      await promise();
     } else {
       return Promise.resolve();
     }
