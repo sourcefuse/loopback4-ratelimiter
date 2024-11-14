@@ -1,3 +1,16 @@
+## Release [v7.0.3](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.2..v7.0.3) November 14, 2024
+Welcome to the November 14, 2024 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [config not working with sequence middleware](https://github.com/sourcefuse/loopback4-ratelimiter/issues/181) :- [fix(middleware): fix promise initialisation ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/b10a585070d87e476b98df9afc67a6733cb86632) was commited on November 14, 2024 by [Surbhi](mailto:98279679+Surbhi-sharma1@users.noreply.github.com)
+    
+      - fix promise initialisation
+      
+      -  GH-181
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v7.0.2](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.1..v7.0.2) June 5, 2024
 Welcome to the June 5, 2024 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
