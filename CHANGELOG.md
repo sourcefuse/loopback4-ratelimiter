@@ -1,3 +1,12 @@
+## Release [v7.0.4](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.3..v7.0.4) November 14, 2024
+Welcome to the November 14, 2024 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [fix(provider): fix promise intialisation ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/06d32d19389abc30679f6b83b29ad57dabe57bb7) was commited on November 14, 2024 by [Moataz](mailto:contact@moetez.me)
+    
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v7.0.3](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.2..v7.0.3) November 14, 2024
 Welcome to the November 14, 2024 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
