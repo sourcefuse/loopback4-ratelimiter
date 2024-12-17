@@ -1,6 +1,6 @@
 {
   "name": "loopback4-ratelimiter",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "description": "A rate limiting extension for loopback-next APIs by ARC",
   "keywords": [
     "loopback-extension",
