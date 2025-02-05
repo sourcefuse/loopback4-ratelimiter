@@ -44,7 +44,7 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^7.0.9",
+    "@loopback/boot": "^7.0.10",
     "@loopback/context": "^7.0.9",
     "@loopback/core": "^6.1.6",
     "@loopback/repository": "^7.0.9",
