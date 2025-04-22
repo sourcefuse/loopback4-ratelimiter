@@ -48,7 +48,7 @@
     "@loopback/context": "^7.0.9",
     "@loopback/core": "^6.1.6",
     "@loopback/repository": "^7.0.9",
-    "@loopback/rest": "^14.0.9",
+    "@loopback/rest": "^14.0.12",
     "express-rate-limit": "^6.4.0",
     "rate-limit-memcached": "^0.6.0",
     "rate-limit-mongo": "^2.3.2",
