@@ -47,7 +47,7 @@
     "@loopback/boot": "^7.0.9",
     "@loopback/context": "^7.0.9",
     "@loopback/core": "^6.1.6",
-    "@loopback/repository": "^7.0.9",
+    "@loopback/repository": "^7.0.12",
     "@loopback/rest": "^14.0.9",
     "express-rate-limit": "^6.4.0",
     "rate-limit-memcached": "^0.6.0",
