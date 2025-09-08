@@ -1,3 +1,20 @@
+## Release [v8.0.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.6..v8.0.0) September 8, 2025
+Welcome to the September 8, 2025 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [refactor(chore): node and loopback packages version upgrade ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/e07369ea4313c930bb884624d91283d0acb8ba80) was commited on September 8, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - node and loopback packages version upgrade
+      
+      - BREAKING CHANGE: yes
+      
+      - GH-221
+      
+      - Co-authored-by: Vaibhav  Bhalla &lt;vaibhav.bhalla@SFSupports-MacBook-Air.local&gt;
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v7.0.6](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.5..v7.0.6) December 17, 2024
 Welcome to the December 17, 2024 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
