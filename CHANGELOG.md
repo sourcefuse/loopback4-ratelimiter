@@ -1,3 +1,37 @@
+## Release [v8.1.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v8.0.0..v8.1.0) March 5, 2026
+Welcome to the March 5, 2026 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
+
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/00) :- [fix(deps): update the vulnerable version of underscore ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/7c7100dc9ce60a2ad357aff54b912cc2456b0c1f) was commited on March 5, 2026 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - rate-limit-mongo depends on vulnerable version of underscrore
+      
+      - GH-00
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [refactor(chore): fix audit vulnerability ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/095f1a5641b5f5c5075452bbd4d44f6c423f7fe0) was commited on December 16, 2025 by [Piyush Singh Gaur](mailto:piyush.singh@sourcefuse.com)
+    
+      - Co-authored-by: Piyush Singh Gaur &lt;piyush.singh@Piyush-SFIN1664.local&gt;
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/225) :- [chore(ci-cd): trusted publishing using oidc ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/b19d1d48cf6d3ff7bd4034e699a3a5265d3c25ec) was commited on October 27, 2025 by [yeshamavani](mailto:83634146+yeshamavani@users.noreply.github.com)
+    
+      - updated workflow and package json file
+      
+      - GH-225
+      
+  
+  - [](https://github.com/sourcefuse/loopback4-ratelimiter/issues/) :- [feat(ci-cd): add trivy scan ](https://github.com/sourcefuse/loopback4-ratelimiter/commit/f000be276a0fdc0a6ec38703113000dba8858392) was commited on October 27, 2025 by [Vaibhav Bhalla](mailto:vaibhav.bhalla@sourcefuse.com)
+    
+      - add trivy scan
+      
+      - GH-223
+      
+      - Co-authored-by: Vaibhav  Bhalla &lt;vaibhav.bhalla@SFSupports-MacBook-Air.local&gt;
+      
+  
+Clink on the above links to understand the changes in detail.
+  ___
+
 ## Release [v8.0.0](https://github.com/sourcefuse/loopback4-ratelimiter/compare/v7.0.6..v8.0.0) September 8, 2025
 Welcome to the September 8, 2025 release of loopback4-ratelimiter. There are many updates in this version that we hope you will like, the key highlights include:
 
