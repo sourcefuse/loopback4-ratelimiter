@@ -96,6 +96,9 @@
       "loopback-connector-kv-redis": "^4.0.0",
       "memcached": "^2.2.2"
     },
+    "rate-limit-mongo": {
+      "underscore": "^1.13.8"
+    },
     "git-release-notes": {
       "ejs": "^3.1.8",
       "yargs": "^17.6.2"
