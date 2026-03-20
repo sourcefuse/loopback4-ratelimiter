@@ -1,12 +1,19 @@
 import {CoreBindings, inject, Provider} from '@loopback/core';
 import {Getter, juggler} from '@loopback/repository';
 import {HttpErrors, RestApplication} from '@loopback/rest';
-import MemcachedStore from 'rate-limit-memcached';
-import MongoStore from 'rate-limit-mongo';
-import RedisStore, {RedisReply} from 'rate-limit-redis';
+import {MemcachedStore} from 'rate-limit-memcached';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - rate-limit-mongo doesn't have type definitions
+import MongoStore = require('rate-limit-mongo');
+import {RedisStore, type RedisReply} from 'rate-limit-redis';
 import {TextDecoder} from 'util';
 import {RateLimitSecurityBindings} from '../keys';
-import {RateLimitMetadata, RateLimitOptions, Store} from '../types';
+import {
+  MemcachedClient,
+  RateLimitMetadata,
+  RateLimitOptions,
+  Store,
+} from '../types';
 
 const decoder = new TextDecoder('utf-8');
 export class RatelimitDatasourceProvider implements Provider<Store> {
@@ -34,8 +41,10 @@ export class RatelimitDatasourceProvider implements Provider<Store> {
     const var2 = 1000;
 
     if (this.config?.type === 'MemcachedStore') {
-      const expiration = (opts.windowMs ?? var1 * var2) / var2;
-      return new MemcachedStore({client: this.config?.client, expiration});
+      return new MemcachedStore({
+        client: this.config?.client as MemcachedClient,
+        prefix: '',
+      });
     }
     if (this.config?.type === 'MongoStore') {
       const expireTimeMs = (opts.windowMs ?? var1 * var2) / var2;
