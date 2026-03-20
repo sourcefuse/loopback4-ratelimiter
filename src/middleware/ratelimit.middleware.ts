@@ -16,6 +16,19 @@ import * as RateLimit from 'express-rate-limit';
 import {RateLimitSecurityBindings} from '../keys';
 import {RateLimitMetadata, RateLimitOptions} from '../types';
 import {RatelimitActionMiddlewareGroup} from './middleware.enum';
+
+// Cache for RateLimit instances to avoid store reuse error in v8
+const rateLimitCache = new Map<string, RateLimit.RateLimitRequestHandler>();
+
+function getRateLimiterKey(opts: Partial<RateLimitOptions>): string {
+  return JSON.stringify(opts);
+}
+
+// Export function to clear cache for testing
+export function clearRateLimitCache(): void {
+  rateLimitCache.clear();
+}
+
 @injectable(
   asMiddleware({
     group: RatelimitActionMiddlewareGroup.RATELIMIT,
@@ -26,7 +39,7 @@ import {RatelimitActionMiddlewareGroup} from './middleware.enum';
 export class RatelimitMiddlewareProvider implements Provider<Middleware> {
   constructor(
     @inject.getter(RateLimitSecurityBindings.DATASOURCEPROVIDER)
-    private readonly getDatastore: Getter<RateLimit.Store>,
+    private readonly getDatastore: Getter<RateLimit.Store | null>,
     @inject.getter(RateLimitSecurityBindings.METADATA)
     private readonly getMetadata: Getter<RateLimitMetadata>,
     @inject(CoreBindings.APPLICATION_INSTANCE)
@@ -60,17 +73,44 @@ export class RatelimitMiddlewareProvider implements Provider<Middleware> {
         const operationMetadata = metadata ? metadata.options : {};
 
         // Create options based on global config and method level config
-        const opts = {...this.config, ...operationMetadata};
+        const rawOpts = {...this.config, ...operationMetadata};
 
+        // Filter out unsupported options for express-rate-limit v8
+        // 'name' is no longer supported in v8
+        // 'client', 'type', 'uri', 'collectionName' are custom DataSourceConfig options
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        const {
+          name,
+          client,
+          type,
+          uri,
+          collectionName,
+          store: originalStore,
+          ...opts
+        } = rawOpts as RateLimitOptions & {store?: unknown};
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+
+        // If dataStore is null or undefined, don't set the store property
+        // express-rate-limit v8 will create its own InMemoryStore
         if (dataStore) {
-          opts.store = dataStore;
+          (opts as RateLimit.Options).store = dataStore;
         }
 
         opts.message = new HttpErrors.TooManyRequests(
           opts.message?.toString() ?? 'Method rate limit reached !',
         );
 
-        const limiter = RateLimit.default(opts);
+        // Get or create a RateLimit instance for this configuration
+        // This avoids the "store reuse" error in express-rate-limit v8
+        // Note: We exclude 'store' from cache key since each store instance is unique
+        const cacheKey = getRateLimiterKey(opts);
+        let limiter = rateLimitCache.get(cacheKey);
+
+        if (!limiter) {
+          limiter = RateLimit.default(opts);
+          rateLimitCache.set(cacheKey, limiter);
+        }
+
         limiter(request, response, (err: unknown) => {
           if (err) {
             reject(err);
