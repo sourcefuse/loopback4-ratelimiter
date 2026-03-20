@@ -2,6 +2,8 @@ import {Client} from '@loopback/testlab';
 import {memoryStore} from '../store.provider';
 import {TestApplication} from './fixtures/application';
 import {setUpApplication} from './helper';
+import {clearRateLimitCache} from '../../../middleware/ratelimit.middleware';
+
 describe('Acceptance Test Cases', () => {
   let app: TestApplication;
   let client: Client;
@@ -11,6 +13,7 @@ describe('Acceptance Test Cases', () => {
   });
   afterEach(async () => {
     await clearStore();
+    clearRateLimitCache();
   });
 
   after(async () => app.stop());

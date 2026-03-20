@@ -1,18 +1,22 @@
-import {inject, Provider, ValueOrPromise} from '@loopback/core';
+import {Provider, ValueOrPromise} from '@loopback/core';
 import {Store} from 'express-rate-limit';
-import {RateLimitSecurityBindings} from '../../keys';
-import {RateLimitOptions} from '../../types';
-import {InMemoryStore} from './in-memory-store';
-export const memoryStore = new InMemoryStore();
-export class StoreProvider implements Provider<Store> {
-  constructor(
-    @inject(RateLimitSecurityBindings.CONFIG, {optional: true})
-    private readonly config?: RateLimitOptions,
-  ) {}
-  value(): ValueOrPromise<Store> {
-    const DEFAULT_WINDOW_MS = 60000;
-    const windowMs = this.config?.windowMs ?? DEFAULT_WINDOW_MS;
-    memoryStore.setInterval(windowMs);
-    return memoryStore;
+
+// InMemoryStore is no longer used as a shared store in v8
+// express-rate-limit v8 creates its own InMemoryStore instances internally
+// This provider now returns null to use the default InMemoryStore
+
+export class StoreProvider implements Provider<Store | null> {
+  value(): ValueOrPromise<Store | null> {
+    // Return null to let express-rate-limit v8 create its own InMemoryStore
+    // Each RateLimit instance will have its own store with proper state management
+    return null;
   }
 }
+
+// Export empty memoryStore object for backward compatibility with tests
+export const memoryStore = {
+  resetAll: (): void => {
+    // No-op since stores are managed by express-rate-limit v8
+    // Rate limit state will be reset between tests via cache clearing
+  },
+};
