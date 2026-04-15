@@ -83,7 +83,7 @@
     "fs-extra": "^11.3.4",
     "git-release-notes": "^5.0.0",
     "husky": "^9.1.7",
-    "jsdom": "^29.0.0",
+    "jsdom": "^21.1.2",
     "loopback-connector-kv-redis": "^4.0.0",
     "memcached": "^2.2.2",
     "proxyquire": "^2.1.3",
