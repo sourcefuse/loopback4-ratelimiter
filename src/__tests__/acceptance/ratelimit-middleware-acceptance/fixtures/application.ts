@@ -8,7 +8,6 @@ import {RateLimiterComponent, RateLimitSecurityBindings} from '../../../..';
 import {TestController} from '../../test.controller';
 
 import {MySequence} from './middleware.sequence';
-import {StoreProvider} from '../../store.provider';
 export {ApplicationConfig};
 export class TestApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -26,9 +25,7 @@ export class TestApplication extends BootMixin(
 
     this.projectRoot = __dirname;
     this.controller(TestController);
-    this.bind(RateLimitSecurityBindings.DATASOURCEPROVIDER).toProvider(
-      StoreProvider,
-    );
+    this.bind(RateLimitSecurityBindings.DATASOURCEPROVIDER).to(null);
 
     this.bind(RateLimitSecurityBindings.CONFIG).to({
       name: 'inMemory',
