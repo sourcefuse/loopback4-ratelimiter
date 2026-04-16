@@ -46,12 +46,9 @@ jobs:
       - name: Semantic Publish to NPM 🚀
         run: |
           npm config set provenance true
-
-          HUSKY=0 npx semantic-release
+          npx semantic-release
         env:
           GH_TOKEN: ${{ secrets.RELEASE_COMMIT_GH_PAT }}
+          HUSKY: 0
           # REMOVED: NPM_TOKEN is not needed with trusted publishing
           # The id-token: write permission above handles authentication
-
-      - name: Changelog 📝
-        run: cd src/release_notes && HUSKY=0 node release-notes.js
