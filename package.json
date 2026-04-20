@@ -82,7 +82,7 @@
     "eslint-plugin-mocha": "^10.5.0",
     "fs-extra": "^11.3.4",
     "git-release-notes": "^5.0.0",
-    "husky": "^9.1.7",
+    "husky": "^7.0.4",
     "jsdom": "^21.1.2",
     "loopback-connector-kv-redis": "^4.0.0",
     "memcached": "^2.2.2",
